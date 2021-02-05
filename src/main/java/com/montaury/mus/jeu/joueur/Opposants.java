@@ -4,12 +4,20 @@ import java.util.Iterator;
 import java.util.List;
 
 public class Opposants {
+
   private Joueur joueurEsku;
   private Joueur joueurZaku;
 
-  public Opposants(Joueur joueurEsku, Joueur joueurZaku) {
-    this.joueurEsku = joueurEsku;
-    this.joueurZaku = joueurZaku;
+  private Equipe equipe1;
+  private Equipe equipe2;
+
+  public Opposants(Equipe e1,Equipe e2) {
+    equipe1 = e1;
+    equipe2 = e2;
+
+    this.joueurEsku = equipe1.getJ1();
+    this.joueurZaku = equipe2.getJ1();
+
   }
 
   public void tourner() {
@@ -21,9 +29,15 @@ public class Opposants {
   public Joueur joueurEsku() {
     return joueurEsku;
   }
-
   public Joueur joueurZaku() {
     return joueurZaku;
+  }
+
+  public Equipe getEquipe1() {
+    return equipe1;
+  }
+  public Equipe getEquipe2() {
+    return equipe2;
   }
 
   public Iterator<Joueur> itererDansLOrdre() {
@@ -31,7 +45,7 @@ public class Opposants {
   }
 
   public List<Joueur> dansLOrdre() {
-    return List.of(joueurEsku, joueurZaku);
+    return List.of(equipe1.j1,equipe1.j2,equipe2.j1,equipe2.j2);
   }
 
   private static class IteratorInfini implements Iterator<Joueur> {

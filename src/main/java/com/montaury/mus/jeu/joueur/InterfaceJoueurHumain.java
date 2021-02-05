@@ -37,9 +37,13 @@ public class InterfaceJoueurHumain implements InterfaceJoueur {
       .mapToObj(indiceCarte -> main.cartesDuPlusGrandAuPlusPetit()
       .get(indiceCarte - 1))
       .collect(Collectors.toList());
-    println("test");
+
     if(listeCartesAJeter.size()==0) {
       println("Vous n'avez saisit aucunes cartes, Réessayez");
+      return cartesAJeter();
+    }
+    if(listeCartesAJeter.size()>4) {
+      println("Vous avez saisit trop de cartes, Réessayez");
       return cartesAJeter();
     }
     return listeCartesAJeter;

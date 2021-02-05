@@ -1,6 +1,7 @@
 package com.montaury.mus.jeu;
 
 import com.montaury.mus.jeu.joueur.AffichageEvenementsDeJeu;
+import com.montaury.mus.jeu.joueur.Equipe;
 import com.montaury.mus.jeu.joueur.Joueur;
 import com.montaury.mus.jeu.joueur.Opposants;
 import com.montaury.mus.jeu.tour.Tour;
@@ -30,14 +31,25 @@ public class Manche {
     private static final int POINTS_POUR_TERMINER_MANCHE = 40;
 
     private final Map<Joueur, Integer> scoreParJoueur = new HashMap<>();
+    private final Map<Equipe, Integer> scoreParEquipe = new HashMap<>();
 
     public Score(Opposants opposants) {
-      scoreParJoueur.put(opposants.joueurEsku(), 0);
-      scoreParJoueur.put(opposants.joueurZaku(), 0);
+      scoreParJoueur.put(opposants.getEquipe1().getJ1(), 0);
+      scoreParJoueur.put(opposants.getEquipe1().getJ2(), 0);
+      scoreParJoueur.put(opposants.getEquipe2().getJ1(), 0);
+      scoreParJoueur.put(opposants.getEquipe2().getJ2(), 0);
+
+      scoreParEquipe.put(opposants.getEquipe1(),0);
+      scoreParEquipe.put(opposants.getEquipe2(),0);
+      //scoreParJoueur.put(opposants.joueurEsku(), 0);
+      //scoreParJoueur.put(opposants.joueurZaku(), 0);
     }
 
     public Map<Joueur, Integer> scoreParJoueur() {
       return scoreParJoueur;
+    }
+    public Map<Equipe, Integer> scoreParEquipe() {
+      return scoreParEquipe;
     }
 
     public void scorer(Joueur joueur, int points) {
