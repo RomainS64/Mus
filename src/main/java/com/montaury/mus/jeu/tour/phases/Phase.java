@@ -29,6 +29,7 @@ public abstract class Phase {
   }
 
   public final Resultat jouer(AffichageEvenementsDeJeu affichage, Opposants opposants, Manche.Score score) {
+
     affichage.nouvellePhase(this);
     List<Joueur> joueurs = participantsParmi(opposants);
     if (joueurs.isEmpty()) {

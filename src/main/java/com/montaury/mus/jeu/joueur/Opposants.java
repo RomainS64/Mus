@@ -59,11 +59,12 @@ public class Opposants {
   }
 
   private static class IteratorInfini implements Iterator<Joueur> {
+
     private final Opposants opposants;
     private Joueur suivant;
 
     public IteratorInfini(Opposants opposants) {
-      this.opposants = opposants;
+      this.opposants = new Opposants(opposants.equipes.get(0),opposants.equipes.get(1));
       suivant = opposants.joueurEsku;
     }
 
@@ -74,7 +75,15 @@ public class Opposants {
 
     @Override
     public Joueur next() {
+
       Joueur next = suivant;
+      for(Joueur j:opposants.joueursDansLordre){
+        if(suivant == j){
+          if(j == opposants.joueursDansLordre.getLast())suivant = opposants.joueursDansLordre.getFirst();
+          else suivant = opposants.joueursDansLordre.get(opposants.joueursDansLordre.indexOf(j)+1);
+
+        }
+      }
       suivant = suivant == opposants.joueurEsku ? opposants.joueurZaku : opposants.joueurEsku;
       return next;
     }

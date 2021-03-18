@@ -13,6 +13,7 @@ public class Dialogue {
   private final List<ChoixJoueur> choix = new ArrayList<>();
 
   public final DialogueTermine derouler(AffichageEvenementsDeJeu affichage, Opposants opposants) {
+    //
     Iterator<Joueur> iteratorJoueur = opposants.itererDansLOrdre();
     do {
       Joueur parlant = iteratorJoueur.next();
