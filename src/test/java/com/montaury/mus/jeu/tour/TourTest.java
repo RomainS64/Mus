@@ -59,6 +59,8 @@ class TourTest {
   void devrait_repartir_les_points_si_tout_est_paso() {
     when(interfaceJoueurEsku.faireChoixParmi(any())).thenReturn(new Paso());
     when(interfaceJoueurZaku.faireChoixParmi(any())).thenReturn(new Paso());
+    when(interfaceOrdi2.faireChoixParmi(any())).thenReturn(new Paso());
+    when(interfaceOrdi1.faireChoixParmi(any())).thenReturn(new Paso());
 
     tour.jouer(opposants, score);
 
@@ -85,6 +87,8 @@ class TourTest {
   void devrait_partager_les_points_si_tout_est_idoki() {
     when(interfaceJoueurEsku.faireChoixParmi(any())).thenReturn(new Imido());
     when(interfaceJoueurZaku.faireChoixParmi(any())).thenReturn(new Idoki());
+    when(interfaceOrdi1.faireChoixParmi(any())).thenReturn(new Idoki());
+    when(interfaceOrdi2.faireChoixParmi(any())).thenReturn(new Idoki());
 
     tour.jouer(opposants, score);
 
@@ -96,13 +100,14 @@ class TourTest {
   @Test
   void devrait_partager_les_points_si_tout_est_gehiago_puis_idoki() {
     when(interfaceJoueurEsku.faireChoixParmi(any())).thenReturn(new Imido(), new Idoki(), new Imido(), new Idoki(), new Imido(), new Idoki(), new Imido(), new Idoki());
-    when(interfaceJoueurZaku.faireChoixParmi(any())).thenReturn(new Gehiago(2));
-
+    when(interfaceJoueurZaku.faireChoixParmi(any())).thenReturn(new Idoki());
+    when(interfaceOrdi2.faireChoixParmi(any())).thenReturn(new Gehiago(2));
+    when(interfaceOrdi1.faireChoixParmi(any())).thenReturn(new Idoki());
     tour.jouer(opposants, score);
 
     assertThat(score.vainqueur()).isEmpty();
-    assertThat(score.scoreParEquipe()).containsEntry(equipe1, 4);
-    assertThat(score.scoreParEquipe()).containsEntry(equipe2, 16);
+    assertThat(score.scoreParEquipe()).containsEntry(equipe1,2);
+    assertThat(score.scoreParEquipe()).containsEntry(equipe2,14);
   }
 
   @Test

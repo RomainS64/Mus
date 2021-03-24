@@ -16,7 +16,9 @@ public class Dialogue {
     //
     Iterator<Joueur> iteratorJoueur = opposants.itererDansLOrdre();
     do {
+
       Joueur parlant = iteratorJoueur.next();
+
       Choix choixJoueur = parlant.interfaceJoueur.faireChoixParmi(prochainsChoixPossibles());
       affichage.choixFait(parlant, choixJoueur);
       ajouter(choixJoueur, parlant);

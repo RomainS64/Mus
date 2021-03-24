@@ -64,6 +64,7 @@ public class Opposants {
     private Joueur suivant;
 
     public IteratorInfini(Opposants opposants) {
+
       this.opposants = new Opposants(opposants.equipes.get(0),opposants.equipes.get(1));
       suivant = opposants.joueurEsku;
     }
@@ -77,14 +78,20 @@ public class Opposants {
     public Joueur next() {
 
       Joueur next = suivant;
-      for(Joueur j:opposants.joueursDansLordre){
-        if(suivant == j){
-          if(j == opposants.joueursDansLordre.getLast())suivant = opposants.joueursDansLordre.getFirst();
-          else suivant = opposants.joueursDansLordre.get(opposants.joueursDansLordre.indexOf(j)+1);
 
+      for(Joueur j:opposants.dansLOrdre()){
+        if(suivant == j){
+          if(j == opposants.dansLOrdre().get(opposants.dansLOrdre().size()-1)) {
+            suivant = opposants.dansLOrdre().get(0);
+          }
+          else{
+            suivant = opposants.dansLOrdre().get(opposants.dansLOrdre().indexOf(j)+1);
+          }
+          break;
         }
+
       }
-      suivant = suivant == opposants.joueurEsku ? opposants.joueurZaku : opposants.joueurEsku;
+      //suivant = suivant == opposants.joueurEsku ? opposants.joueurZaku : opposants.joueurEsku;
       return next;
     }
   }

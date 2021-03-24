@@ -38,7 +38,9 @@ class MancheTest {
   @Test
   void devrait_terminer_la_manche_si_hordago_au_grand() {
     when(interfaceJoueurEsku.faireChoixParmi(any())).thenReturn(new Hordago());
+    when(interfaceOrdi1.faireChoixParmi(any())).thenReturn(new Kanta());
     when(interfaceJoueurZaku.faireChoixParmi(any())).thenReturn(new Kanta());
+    when(interfaceOrdi2.faireChoixParmi(any())).thenReturn(new Kanta());
 
     Manche.Resultat resultat = manche.jouer(opposants);
 
@@ -48,8 +50,10 @@ class MancheTest {
 
   @Test
   void devrait_terminer_la_manche_si_un_joueur_a_40_points() {
-    when(interfaceJoueurEsku.faireChoixParmi(any())).thenReturn(new Imido(), new Gehiago(2));
-    when(interfaceJoueurZaku.faireChoixParmi(any())).thenReturn(new Gehiago(40), new Tira());
+    when(interfaceJoueurEsku.faireChoixParmi(any())).thenReturn(new Paso());
+    when(interfaceOrdi2.faireChoixParmi(any())).thenReturn(new Gehiago(40));
+    when(interfaceJoueurZaku.faireChoixParmi(any())).thenReturn(new Tira());
+    when(interfaceOrdi1.faireChoixParmi(any())).thenReturn(new Gehiago(2));
 
     Manche.Resultat resultat = manche.jouer(opposants);
 
@@ -60,9 +64,9 @@ class MancheTest {
   @Test
   void devrait_changer_l_ordre_des_opposants_a_la_fin_du_tour() {
     when(interfaceJoueurEsku.faireChoixParmi(any())).thenReturn(new Hordago());
-    when(interfaceOrdi1.faireChoixParmi(any())).thenReturn(new Tira());
+    when(interfaceOrdi1.faireChoixParmi(any())).thenReturn(new Kanta());
     when(interfaceJoueurZaku.faireChoixParmi(any())).thenReturn(new Kanta());
-    when(interfaceOrdi2.faireChoixParmi(any())).thenReturn(new Tira());
+    when(interfaceOrdi2.faireChoixParmi(any())).thenReturn(new Kanta());
 
     manche.jouer(opposants);
 

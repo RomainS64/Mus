@@ -35,7 +35,11 @@ public class InterfaceJoueurOrdinateur implements InterfaceJoueur {
 
   @Override
   public Choix faireChoixParmi(List<TypeChoix> choixPossibles) {
-    TypeChoix typeChoix = choixPossibles.get(random.nextInt(choixPossibles.size()));
+    TypeChoix typeChoix=TypeChoix.TIRA;
+    try{
+      typeChoix = choixPossibles.get(random.nextInt(choixPossibles.size()));
+    }catch (Throwable t){}
+
     if (typeChoix == TypeChoix.PASO) return new Paso();
     if (typeChoix == TypeChoix.IMIDO) return new Imido();
     if (typeChoix == TypeChoix.HORDAGO) return new Hordago();

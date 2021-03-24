@@ -72,13 +72,13 @@ public abstract class Phase {
 
   public boolean peutSeDerouler(Opposants opposants) {
     int compteur = 0;
-
     for (Joueur j:opposants.dansLOrdre()) {
       if(peutParticiper(j))j.equipe().EstEnJeu(true);
       }
     for(Equipe e:opposants.equipes()){
       if(e.EstEnJeu())compteur++;
     }
+
 
     if (compteur>=2) {
       return true;
